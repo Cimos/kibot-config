@@ -4,11 +4,9 @@ kibot:
 preflight:
   update_xml: true
 
-# Add custom options for each repository
 import:
+  # Add custom options for each repository
   - file: ../options.yaml
-
-import:
   - file: Elecrow
     definitions:
       _KIBOT_F_PASTE: '- F.Paste'
@@ -25,35 +23,42 @@ import:
       _KIBOT_B_PASTE: '- B.Paste'
 
 outputs:
-
 # PDF Schematic
   - name: 'print_sch'
     comment: "Print schematic (PDF)"
     type: pdf_sch_print
-    dir: .
+    dir: Drawings
     options:
-      output: Schematic.pdf
+      output: '%f-%r-%i.%x'
 
 # PDF Drawings
-  - name: 'print_front'
-    comment: "Print F.Cu+Dwgs.User"
-    type: pdf_pcb_print
-    dir: .
+  - name: 'drawings'
+    comment: ""
+    type: pcb_print
+    dir: Drawings
     options:
-      output_name: PCB_Top.pdf
-    layers:
-      - layer: F.Cu
-      - layer: Dwgs.User
-
-  - name: 'print_bottom'
-    comment: "Print B.Cu+Dwgs.User"
-    type: pdf_pcb_print
-    dir: .
-    options:
-      output_name: PCB_Bottom.pdf
-    layers:
-      - layer: B.Cu
-      - layer: Dwgs.User
+      frame_plot_mechanism: 'plot'
+      dnf_filter: '_kibom_dnf'
+      output: '%f-%r-drawing.pdf'
+      pages:
+        - layers:
+          - layer: F.Fab
+          - layer: Edge.Cuts
+          - layer: Dwgs.User
+          page_id: Front Assembly
+        - layers:
+          - layer: B.Fab
+          - layer: Edge.Cuts
+          - layer: Dwgs.User
+          page_id: Back Assembly
+        - layers:
+          - layer: F.Cu
+          - layer: Edge.Cuts
+          page_id: Front Cu
+        - layers:
+          - layer: B.Cu
+          - layer: Edge.Cuts
+          page_id: Back Cu
 
 # Generate IBOM
   - name: 'interactive_bom'
@@ -61,19 +66,35 @@ outputs:
     type: ibom
     dir: BoM
     options:
-      blacklist: 'DNF*'
+      dark_mode: true
+      dnf_filter: '_kibom_dnf'
+      highlight_pin1: true
+      include_tracks: true
+      normalize_field_case: true
       name_format: '%f_%r_iBoM'
+      group_fields: 'Value'
+      show_fields: 'Value,MPN,Datasheet'
+      output: '%f-%r-%i.%x'
 
-# Generate csv bom
+# Generate csv/html BOM
+  - name: 'bom_html'
+    comment: "Bill of Materials in HTML format"
+    type: kibom
+    dir: BoM
+    options:
+      format: HTML
+      output: '%f-%r-%i.%x'
+
   - name: 'bom_csv'
     comment: "Bill of Materials in CSV format"
     type: kibom
     dir: BoM
     options:
       format: CSV
+      output: '%f-%r-%i.%x'
 
 # Generate Pick and Place files
-  - name: 'position'
+  - name: 'position (ASCII)'
     comment: "Pick and place file"
     type: position
     dir: Position
@@ -82,3 +103,25 @@ outputs:
       units: millimeters  # millimeters or inches
       separate_files_for_front_and_back: true
       only_smd: true
+      output: '%f-%r-%i.%x'
+
+  - name: 'position (CSV)'
+    comment: "Pick and place file"
+    type: position
+    dir: Position
+    options:
+      format: CSV   # CSV or ASCII format
+      units: millimeters  # millimeters or inches
+      separate_files_for_front_and_back: true
+      only_smd: true
+      output: '%f-%r-%i.%x'
+
+# Generate 3D Model
+  - name: 'step'
+    comment: 'Generate 3D Step Model'
+    type: 'step'
+    dir: Model
+    options:
+      dnf_filter: '_kibom_dnf'
+      no_virtual: true
+      output: '%f-%r-%i.%x'
