@@ -1,6 +1,9 @@
 kibot:
   version: 1
 
+preflight:
+  update_xml: true
+
 # Add custom options for each repository
 import:
   - file: ../options.yaml
@@ -61,14 +64,7 @@ outputs:
       blacklist: 'DNF*'
       name_format: '%f_%r_iBoM'
 
-# Generate csv/html bom
-  - name: 'bom_html'
-    comment: "Bill of Materials in HTML format"
-    type: kibom
-    dir: BoM
-    options:
-      format: HTML
-
+# Generate csv bom
   - name: 'bom_csv'
     comment: "Bill of Materials in CSV format"
     type: kibom
