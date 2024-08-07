@@ -11,11 +11,20 @@ preflight:
 
 
 import:
-  - configs/Elecrow.kibot.yaml
-  # - configs/FusionPCB.kibot.yaml
-  - configs/JLCPCB.kibot.yaml
-  # - configs/P-Ban.kibot.yaml
-  - configs/PCBWay.kibot.yaml
+  - file: Elecrow
+    definitions:
+      _KIBOT_F_PASTE: '- F.Paste'
+      _KIBOT_B_PASTE: '- B.Paste'
+  # - file: FusionPCB
+  - file: JLCPCB
+    definitions:
+      _KIBOT_F_PASTE: '- F.Paste'
+      _KIBOT_B_PASTE: '- B.Paste'
+  # - file: P-Ban
+  - file: PCBWay
+    definitions:
+      _KIBOT_F_PASTE: '- F.Paste'
+      _KIBOT_B_PASTE: '- B.Paste'
 
 outputs:
 
