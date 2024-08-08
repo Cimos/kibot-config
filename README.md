@@ -20,7 +20,7 @@ Commit changes.
 
 ### Example 
 
-[Mad_RP2040]([url](https://github.com/Cimos/Mad_RP2040/tree/main)) is an example of how kibot-config can be used. 
+[Mad_RP2040](https://github.com/Cimos/Mad_RP2040/) is an example of how kibot-config can be used. 
 
 ### Example project folder structure
 
