@@ -18,6 +18,10 @@ Add `options.yaml` to the root directory of the github repository.
 
 Commit changes.
 
+### Example 
+
+[Mad_RP2040]([url](https://github.com/Cimos/Mad_RP2040/tree/main)) is an example of how kibot-config can be used. 
+
 ### Example project folder structure
 
 Your project folder structure will look something like the following.
