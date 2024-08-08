@@ -1,53 +1,45 @@
 # kibot-config
 
-Kibot config for building a datapack for kicad using github actions.
+Kibot config is meant for building kicad pcb datapacks using github actions. While I have chosen a flexible license to for this project to allow the community to do what they want. I encourage anyone using this to make your project opensource.
 
-## Github Action
+## Use case
 
-You will need to add a github action with the following to the project that you want to be built.
+I have indented for this repository to make building kicad pcb artifacts as easy as possible.
 
-```yaml
-name: Generate Datapack
-on:
-  push:
-    paths:
-    - '**.kicad_sch'
-    - '**.kicad_pcb'
-  pull_request:
-    paths:
-      - '**.kicad_sch'
-      - '**.kicad_pcb'
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    # Use current kicad repo commit that triggered this build.
-    - uses: actions/checkout@v3
-    
-    # Run bash command to get kicad file name. 
-    - name: Get Kicad Project Name
-      run: echo "PROJECT_NAME=$(basename *.kicad_pro .kicad_pro)" >> $GITHUB_ENV
-    # Checkout kibot config repo
-    - name: Get Kibot Config
-      uses: actions/checkout@main
-      with:
-        repository: Cimos/kibot-config
-        path: ./kibot-config
+### Step 1: Add Github Action
 
-    
-    # Use kibot build.
-    - uses: INTI-CMNB/KiBot@v1.7.0
-      with:
-        config: kibot-config/build.kibot.yaml
-        dir: output
-        schema: '${{ env.PROJECT_NAME }}.kicad_sch'
-        board: '${{ env.PROJECT_NAME }}.kicad_pcb'
-        # verbose: 2
-    
-    # Update artifacts
-    - name: Upload Results
-      uses: actions/upload-artifact@v2
-      with:
-        name: output
-        path: output
+Add `main.yaml` to `.github/workflows/` on the root directory of the github repository.
+
+### Step 2: Add options.yaml
+
+Add `options.yaml` to the root directory of the github repository.
+
+### Step 3: Commit changes
+
+Commit changes.
+
+### Example project folder structure
+
+Your project folder structure will look something like the following.
+
+```text
+SomeProject/
+  .github/
+  SomeProject.kicad_pro
+  SomeProject.kicad_sch
+  SomeProject.kicad_pcb
+  options.yaml
+
+  .github/
+    workflows/
+
+  workflows/
+    main.yaml
 ```
+
+## Future work
+
+* Add support for variants
+* Add 2d render generation
+* Add GIF generation
+* Add github action which calls a default action with the default `options.yaml` in this repository.
