@@ -92,7 +92,20 @@ outputs:
     options:
       format: CSV
       output: '%f-%r-%i.%x'
-
+      columns:
+        - References
+        - Value
+        - Rating
+        - Manufacturer
+        - MPN
+        - Supplier
+        - Supplier PN
+        - Quantity Per PCB
+        - Price
+      csv:
+        hide_pcb_info: true
+        hide_stats_info: true
+        quote_all: true
 # Generate Pick and Place files
   - name: 'position (ASCII)'
     comment: "Pick and place file"
