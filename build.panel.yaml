@@ -1,6 +1,9 @@
 kibot:
   version: 1
 
+import:
+  - file: ../panelization.yaml
+
 outputs:
   - name: createBoardPanel
     comment: "Create board panel"
