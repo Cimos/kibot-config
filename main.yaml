@@ -20,7 +20,7 @@ jobs:
         path: ./kibot-config
 
     
-    # Use kibot build.
+    # Build datapack
     - uses: INTI-CMNB/KiBot@v1.7.0
       with:
         config: kibot-config/build.kibot.yaml
@@ -29,7 +29,22 @@ jobs:
         board: '${{ env.PROJECT_NAME }}.kicad_pcb'
         # log: log/log.log
         # verbose: 2
-    
+        
+    # - name: Commit files
+    # if: ${{ hashFiles('assets/') != '' }}
+    # run: |
+    #  git config ...
+
+    # Build panel
+    - uses: INTI-CMNB/KiBot@v1.7.0
+      with:
+        config: kibot-config/build.panel.yaml
+        dir: output
+        schema: '${{ env.PROJECT_NAME }}.kicad_sch'
+        board: '${{ env.PROJECT_NAME }}.kicad_pcb'
+        # log: log/log.log
+        # verbose: 2
+
     # Update artifacts
     - name: Upload Results
       uses: actions/upload-artifact@v4
