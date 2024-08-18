@@ -145,7 +145,7 @@ function args_process {
                    VERBOSE="-vvvv"
                fi
                ;;
-           -L) LOG_FILE="$VAL"
+           -L) LOG_FILE="-L '$VAL'"
                ;;
            -x) EXTRA_ARGS="$VAL"
                ;;
