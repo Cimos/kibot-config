@@ -16,13 +16,11 @@ outputs:
       create_preview: true
       configs:
         - layout:
-            rows: 4
-            cols: 4
+            rows: 1
+            cols: 1
             space: 1
             hbackbone: 3
             vbackbone: 3
-            hboneskip: 1
-            vboneskip: 1
           page:
             size: A0
           tabs:
