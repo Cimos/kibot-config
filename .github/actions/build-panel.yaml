@@ -1,0 +1,71 @@
+name: Generate PCB panel datapack
+on: [push, pull_request]
+jobs:
+  KiKit:
+    name: Test Build 
+    runs-on: ubuntu-latest
+    container: ghcr.io/inti-cmnb/kicad8_auto_full:latest
+
+    steps:
+    - name: Checkout (only last commit)
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Get KiCad project name
+      run: echo "PROJECT_NAME=$(basename *.kicad_pro .kicad_pro)" >> $GITHUB_ENV
+
+    - name: Clone and Checkout our KiBot config
+      uses: actions/checkout@v4
+      with:
+        repository: Cimos/kibot-config
+        path: ./kibot-config
+        ref: 1-add-penalization-to-build
+
+    - name: Check for panel file existence
+      id: check_files
+      uses: andstor/file-existence-action@v3
+      with:
+        files: "panelization.yaml"
+
+    # - name: Run KiBot
+    #   if: steps.check_files.outputs.files_exists == 'true'
+    #   run: >-
+    #     kibot 
+    #     --schematic ${{ env.PROJECT_NAME }}.kicad_sch 
+    #     --board-file ${{ env.PROJECT_NAME }}.kicad_pcb 
+    #     -out-dir output
+    #     --plot-config kibot-config/build.panel.yaml 
+    #     2> logfile/kibot.log
+        
+    - name: Generate panel file
+      if: steps.check_files.outputs.files_exists == 'true'
+      uses: INTI-CMNB/KiBot@v2_k8
+      with:
+        config: kibot-config/build.panel.yaml
+        dir: output
+        schema: '${{ env.PROJECT_NAME }}.kicad_sch'
+        board: '${{ env.PROJECT_NAME }}.kicad_pcb'
+        # verbose: 2
+    
+    - name: Build panel datapack
+      if: steps.check_files.outputs.files_exists == 'true'
+      uses: INTI-CMNB/KiBot@v2_k8
+      with:
+        config: kibot-config/build.kibot.yaml
+        dir: output
+        schema: '${{ env.PROJECT_NAME }}.kicad_sch'
+        board: '${{ env.PROJECT_NAME }}.kicad_pcb'
+        # verbose: 2
+
+    - name: Upload logfile
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ env.PROJECT_NAME }}-lofile
+        path: logfile
+
+    - name: Upload datapack results
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ env.PROJECT_NAME }}-panel-datapack
+        path: output
