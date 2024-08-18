@@ -15,7 +15,11 @@ outputs:
       units: mm
       create_preview: true
       configs:
-        - layout:
+          # Extend panel options in KiCad repo. If there is double 
+          # up on the settings then settings defined in 
+          # simple_panel[base] should be used.
+        - extends: simple_panel[base]
+          layout:
             rows: 1
             cols: 1
             space: 1
@@ -60,6 +64,3 @@ outputs:
             millradius: 1
             origin: bl
 
-          # Extend panel options in KiCad repo. If there is double up on the settings then this 
-          # should overwrite anything defaulted here.
-          extends: simple_panel[base]
