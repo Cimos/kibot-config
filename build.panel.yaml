@@ -15,13 +15,7 @@ outputs:
       units: mm
       create_preview: true
       configs:
-          # Extend panel options in KiCad repo. If there is double 
-          # up on the settings then settings defined in 
-          # simple_panel[base] should be used.
-        - extends: simple_panel[base]
-          layout:
-            rows: 1
-            cols: 1
+        - layout:
             space: 1
             hbackbone: 3
             vbackbone: 3
@@ -29,11 +23,11 @@ outputs:
             size: A0
           tabs:
             type: annotation
-            tabfootprints: 'kikit:Tab'
+            tabfootprints: 'PCM_kikit:Tab'
           cuts:
             type: vcuts
-            offset: -0.1
-            layer: 'User.1'
+            # offset: -0.1
+            # layer: 'User.1'
           framing:
             type: frame
             width: 9
@@ -64,3 +58,7 @@ outputs:
             millradius: 1
             origin: bl
 
+          # Extend panel options in KiCad repo. If there is double 
+          # up on the settings then settings defined in 
+          # simple_panel[base] should be used.
+          extends: simple_panel[base]
