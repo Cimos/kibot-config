@@ -1,0 +1,57 @@
+name: Generate Datapack
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    # Use current kicad repo commit that triggered this build.
+    - uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    # Run bash command to get kicad file name. 
+    - name: Get Kicad Project Name
+      run: echo "PROJECT_NAME=$(basename *.kicad_pro .kicad_pro)" >> $GITHUB_ENV
+    # Checkout kibot config repo
+    - name: Get Kibot Config
+      uses: actions/checkout@main
+      with:
+        repository: Cimos/kibot-config
+        path: ./kibot-config
+
+    
+    # Build datapack
+    - uses: INTI-CMNB/KiBot@v1.7.0
+      with:
+        config: kibot-config/build.kibot.yaml
+        dir: output
+        schema: '${{ env.PROJECT_NAME }}.kicad_sch'
+        board: '${{ env.PROJECT_NAME }}.kicad_pcb'
+        # log: log/log.log
+        # verbose: 2
+        
+    # Build panel
+    - uses: INTI-CMNB/KiBot@v1.7.0
+      with:
+        config: kibot-config/build.panel.yaml
+        dir: output
+        schema: '${{ env.PROJECT_NAME }}.kicad_sch'
+        board: '${{ env.PROJECT_NAME }}.kicad_pcb'
+        # log: log/log.log
+        # verbose: 2
+
+    # Update artifacts
+    - name: Upload Results
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ env.PROJECT_NAME }}-datapack
+        path: output
+
+    # Don't think this is supported yet.
+    # - name: Upload Kibot Log File
+    #   uses: actions/upload-artifact@v4
+    #   if: always()
+    #   with:
+    #     name: kibot-logs
+    #     path: logs
+    #     if-no-files-found: error
