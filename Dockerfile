@@ -1,4 +1,4 @@
-FROM ghcr.io/inti-cmnb/kicad8_auto_full:latest
+FROM ghcr.io/inti-cmnb/kicad8_auto:dev
 LABEL AUTHOR Madman <madmanuav@icloud.com>
 LABEL Description="Export various files from KiCad projects (KiCad 8)"
 
