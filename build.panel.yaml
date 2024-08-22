@@ -9,7 +9,7 @@ outputs:
     comment: "Create board panel"
     type: panelize
     dir: Panel
-    disable_run_by_default: true
+    # disable_run_by_default: true
     options:
       title: '%f-%r'
       units: mm
@@ -21,46 +21,46 @@ outputs:
             vbackbone: 3
             rows: 3
             cols: 2
-          page:
-            size: A0
+          # page:
+          #   size: A0
           tabs:
             type: annotation
-            tabfootprints: 'PCM_kikit:Tab'
-          cuts:
-            type: vcuts
+            tabfootprints: 'kikit:Tab'
+          # cuts:
+          #   type: vcuts
             # offset: -0.1
             # layer: 'User.1'
-          framing:
-            type: frame
-            width: 9
-            space: 1
-          copperfill:
-            type: hatched
-            clearance: 2
-            spacing: 0.5
-            width: 0.5
-          tooling:
-            type: 3hole
-            hoffset: 5
-            voffset: 5
-            size: 1.5
-          fiducials:
-            type: 3fid
-            hoffset: 5
-            voffset: 2.5
-            coppersize: 2
-            opening: 1
-          text:
-            text: "{boardTitle}-{boardRevision}"
-            anchor: mt
-            voffset: 5
-            hjustify: center
-            vjustify: center
-          post:
-            millradius: 1
-            origin: bl
+          # framing:
+          #   type: frame
+          #   width: 9
+          #   space: 1
+          # copperfill:
+          #   type: hatched
+          #   clearance: 2
+          #   spacing: 0.5
+          #   width: 0.5
+          # tooling:
+          #   type: 3hole
+          #   hoffset: 5
+          #   voffset: 5
+          #   size: 1.5
+          # fiducials:
+          #   type: 3fid
+          #   hoffset: 5
+          #   voffset: 2.5
+          #   coppersize: 2
+          #   opening: 1
+          # text:
+          #   text: "{boardTitle}-{boardRevision}"
+          #   anchor: mt
+          #   voffset: 5
+          #   hjustify: center
+          #   vjustify: center
+          # post:
+          #   millradius: 1
+          #   origin: bl
 
           # Extend panel options in KiCad repo. If there is double 
           # up on the settings then settings defined in 
           # simple_panel[base] should be used.
-          extends: simple_panel[base]
+          # extends: simple_panel[base]
