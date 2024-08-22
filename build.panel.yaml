@@ -19,6 +19,8 @@ outputs:
             space: 1
             hbackbone: 3
             vbackbone: 3
+            rows: 3
+            cols: 2
           page:
             size: A0
           tabs:
