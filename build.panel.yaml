@@ -26,6 +26,8 @@ outputs:
           tabs:
             type: annotation
             tabfootprints: 'kikit:Tab'
+          debug:
+            trace: true
           # cuts:
           #   type: vcuts
             # offset: -0.1
