@@ -20,7 +20,7 @@ jobs:
         ref: main
     
     - name: Build Datapack
-      uses: INTI-CMNB/KiBot@v1.7.0
+      uses: INTI-CMNB/KiBot@v2_k9
       with:
         config: kibot-config/build.kibot.yaml
         dir: output

@@ -4,7 +4,7 @@ jobs:
   KiKit:
     name: Test Build 
     runs-on: ubuntu-latest
-    container: ghcr.io/inti-cmnb/kicad8_auto_full:latest
+    container: ghcr.io/inti-cmnb/kicad9_auto_full:latest
 
     steps:
     - name: Checkout (only last commit)
@@ -40,7 +40,7 @@ jobs:
         
     - name: Generate panel file
       if: steps.check_files.outputs.files_exists == 'true'
-      uses: INTI-CMNB/KiBot@v2_k8
+      uses: INTI-CMNB/KiBot@v2_k9
       with:
         config: kibot-config/build.panel.yaml
         dir: output
