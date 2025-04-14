@@ -11,12 +11,18 @@ import:
     definitions:
       _KIBOT_F_PASTE: '- F.Paste'
       _KIBOT_B_PASTE: '- B.Paste'
-  # - file: FusionPCB
+  - file: FusionPCB
+    definitions:
+      _KIBOT_F_PASTE: '- F.Paste'
+      _KIBOT_B_PASTE: '- B.Paste'
   - file: JLCPCB
     definitions:
       _KIBOT_F_PASTE: '- F.Paste'
       _KIBOT_B_PASTE: '- B.Paste'
-  # - file: P-Ban
+  - file: P-Ban
+    definitions:
+      _KIBOT_F_PASTE: '- F.Paste'
+      _KIBOT_B_PASTE: '- B.Paste'
   - file: PCBWay
     definitions:
       _KIBOT_F_PASTE: '- F.Paste'

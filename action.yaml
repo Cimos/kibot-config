@@ -1,0 +1,67 @@
+name: 'KiBot GitHub action'
+description: 'Copied from KiBot, automatically generates documentation, fabrication, etc. files for any KiCad project.'
+author: 'MadMan'
+inputs:
+  config:
+    description: 'The config file to use'
+    required: false
+    default: '__SCAN__'
+  dir:
+    description: 'The output directory [default: .]'
+    required: false
+    default: 'output'
+  board:
+    description: 'The PCB .kicad-pcb board file [default: first *.kicad_pcb found]'
+    required: false
+    default: '__SCAN__'
+  schema:
+    description: 'The schematic file (.sch) [default: first *.*sch found]'
+    required: false
+    default: '__SCAN__'
+  targets:
+    description: 'List of targets to generate separated by spaces. To only run preflights use __NONE__  [default: generate all]'
+    required: false
+    default: '__ALL__'
+  variant:
+    description: 'Global variant to use [default: no variants]'
+    required: false
+    default: '__NONE__'
+  install3D:
+    description: 'Install the 3D models, use YES [default: NO]'
+    required: false
+    default: 'NO'
+  verbose:
+    description: 'Verbosity level [default: 0]'
+    required: false
+    default: '0'
+  logfile:
+    description: 'The log file (.log)'
+    required: false
+    default: ''
+  additional_args:
+    description: 'Additional arguments to pass to KiBot'
+    required: false
+    default: ''
+  cache3D:
+    description: 'Cache the 3D models, use YES [default: NO]'
+    required: false
+    default: 'NO'
+runs:
+  using: 'docker'
+  image: Dockerfile
+  args:
+    -  -c ${{ inputs.config }}
+    -  -C ${{ inputs.cache3D }}
+    -  -d ${{ inputs.dir }}
+    -  -b ${{ inputs.board }}
+    -  -e ${{ inputs.schema }}
+    -  -i ${{ inputs.install3D }}
+    -  -q ${{ inputs.quickstart }}
+    -  -t ${{ inputs.targets }}
+    -  -v ${{ inputs.verbose }}
+    -  -V ${{ inputs.variant }}
+    -  -L ${{ inputs.logfile }}
+    -  -x ${{ inputs.additional_args }}
+branding:
+  icon: 'cpu'
+  color: 'green'
