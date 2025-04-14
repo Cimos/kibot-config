@@ -8,7 +8,7 @@ I have indented for this repository to make building kicad pcb artifacts as easy
 
 ### Step 1: Add Github Action
 
-Add `main.yaml` to `.github/workflows/` on the root directory of the github repository.
+Add `.github` folder to the root directory of the github repository.
 
 ### Step 2: Add options.yaml
 
@@ -38,7 +38,8 @@ SomeProject/
     workflows/
 
   workflows/
-    main.yaml
+    build-datapack.yaml
+    build-panel.yaml
 ```
 
 ## Future work
