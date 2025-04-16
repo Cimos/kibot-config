@@ -1,4 +1,4 @@
-name: Generate Datapack
+name: Generate PCB Datapack
 on: 
   push:
     branches:
