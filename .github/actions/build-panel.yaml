@@ -53,7 +53,7 @@ jobs:
         config: kibot-config/build.kibot.yaml
         dir: output
         schema: '${{ env.PROJECT_NAME }}.kicad_sch'
-        board: '${{ env.PROJECT_NAME }}.kicad_pcb'
+        board: 'output/Panel/${{ env.PROJECT_NAME }}-panel.kicad_pcb'
         logfile: 'logfile/logfile.log'
         # verbose: 2
 
