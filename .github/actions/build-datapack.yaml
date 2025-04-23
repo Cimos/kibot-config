@@ -21,7 +21,7 @@ jobs:
     - name: Get KiCad project name
       run: echo "PROJECT_NAME=$(basename *.kicad_pro .kicad_pro)" >> $GITHUB_ENV
 
-    - name: Clone and Checkout our KiBot config
+    - name: Clone and Checkout KiBot config
       uses: actions/checkout@v4
       with:
         repository: Cimos/kibot-config
