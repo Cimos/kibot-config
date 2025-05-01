@@ -1,4 +1,4 @@
-name: 'KiBot GitHub action'
+name: 'KiBot GitHub action with logfiles'
 description: 'Copied from KiBot, automatically generates documentation, fabrication, etc. files for any KiCad project.'
 author: 'MadMan'
 inputs:
