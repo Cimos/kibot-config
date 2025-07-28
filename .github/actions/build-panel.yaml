@@ -1,4 +1,4 @@
-name: Generate Panel datapack
+name: Build Panel Datapack
 on: 
   push:
     branches:
