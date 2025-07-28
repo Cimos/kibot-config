@@ -98,16 +98,17 @@ outputs:
     options:
       format: CSV
       output: '%f-%r-%i.%x'
-      columns:
-        - References
-        - Value
-        - Rating
-        - Manufacturer
-        - MPN
-        - Supplier
-        - Supplier PN
-        - Quantity Per PCB
-        - Price
+      conf:
+        columns:
+          - References
+          - Value
+          - Rating
+          - Manufacturer
+          - MPN
+          - Supplier
+          - Supplier PN
+          - Quantity Per PCB
+          - Price
       csv:
         hide_pcb_info: true
         hide_stats_info: true
