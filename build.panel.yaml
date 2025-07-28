@@ -5,10 +5,11 @@ import:
   - file: ../panelization.yaml
 
 outputs:
-  - name: createBoardPanel
-    comment: "Create board panel"
+  - name: build_pcb_panel
+    comment: "Create PCB Panel"
     type: panelize
     dir: Panel
+    extends: simple_panel
     # disable_run_by_default: true
     options:
       title: '%f-%r'
@@ -63,4 +64,4 @@ outputs:
           # Extend panel options in KiCad repo. If there is double 
           # up on the settings then settings defined in 
           # simple_panel[base] should be used.
-          # extends: simple_panel[base]
+          extends: simple_panel[base]
