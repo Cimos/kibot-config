@@ -33,6 +33,7 @@ SomeProject/
   SomeProject.kicad_sch
   SomeProject.kicad_pcb
   options.yaml
+  panelization.yaml (Optional)
 
   .github/
     workflows/

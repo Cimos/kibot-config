@@ -1,40 +1,35 @@
 kibot:
   version: 1
 
-import:
-  - file: ../panelization.yaml
-
 outputs:
   - name: build_pcb_panel
     comment: "Create PCB Panel"
     type: panelize
     dir: Panel
-    extends: simple_panel
-    # disable_run_by_default: true
     options:
       title: '%f-%r'
       units: mm
       create_preview: true
       configs:
         - layout:
-            space: 1
-            hbackbone: 3
-            vbackbone: 3
-            rows: 3
-            cols: 2
+            space: @LAYOUT_SPACE@
+            hbackbone: @LAYOUT_H_BACKBONE@
+            vbackbone: @LAYOUT_V_BACKBONE@
+            rows: @LAYOUT_ROWS@
+            cols: @LAYOUT_COLS@
           # page:
           #   size: A0
           tabs:
             type: annotation
-            tabfootprints: 'kikit:Tab'
+            tabfootprints: @TABS_FOOTPRINT@
           cuts:
             type: vcuts
             offset: -0.1
             layer: 'User.1'
           framing:
             type: frame
-            width: 9
-            space: 1
+            width: @FRAME_WIDTH@
+            space: @FRAME_SPACE@
           copperfill:
             type: hatched
             clearance: 2
@@ -61,7 +56,18 @@ outputs:
             millradius: 1
             origin: bl
 
-          # Extend panel options in KiCad repo. If there is double 
-          # up on the settings then settings defined in 
-          # simple_panel[base] should be used.
-          extends: simple_panel[base]
+# Default definitions
+...
+definitions:
+
+  LAYOUT_SPACE: 1
+  LAYOUT_H_BACKBONE: 3
+  LAYOUT_V_BACKBONE: 3
+
+  LAYOUT_ROWS: 3
+  LAYOUT_COLS: 3
+
+  TABS_FOOTPRINT: 'kikit:Tab'
+
+  FRAME_WIDTH: 9
+  FRAME_SPACE: 1
