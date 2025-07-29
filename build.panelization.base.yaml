@@ -9,7 +9,7 @@ outputs:
     options:
       title: '%f-%r'
       units: mm
-      create_preview: true
+      create_preview: True
       configs:
         - layout:
             space: @LAYOUT_SPACE@
@@ -17,29 +17,36 @@ outputs:
             vbackbone: @LAYOUT_V_BACKBONE@
             rows: @LAYOUT_ROWS@
             cols: @LAYOUT_COLS@
+            rotation: @LAYOUT_ROTATION@
+            vbonecut: False
+            hbonecut: False
           # page:
           #   size: A0
+          source:
+            tolerance: 15
           tabs:
             type: annotation
             tabfootprints: @TABS_FOOTPRINT@
           cuts:
             type: vcuts
-            offset: -0.1
+            offset: 0
             layer: 'User.1'
+            clearance: 0.5
+            cutcurves: False
           framing:
             type: frame
             width: @FRAME_WIDTH@
             space: @FRAME_SPACE@
+            cuts: none
           copperfill:
             type: hatched
-            clearance: 2
-            spacing: 0.5
+            clearance: 0.5
             width: 0.5
+            spacing: 2
           tooling:
             type: 3hole
             hoffset: 5
             voffset: 5
-            size: 1.5
           fiducials:
             type: 3fid
             hoffset: 5
@@ -53,8 +60,16 @@ outputs:
             hjustify: center
             vjustify: center
           post:
-            millradius: 1
+            millradius: 0.5
             origin: bl
+            dimensions: True
+          debug:
+            trace: True
+            drawPartitionLines : True
+            drawboxes : True
+            drawtabfail : True
+            deterministic : True
+
 
 # Default definitions
 ...
@@ -66,8 +81,9 @@ definitions:
 
   LAYOUT_ROWS: 3
   LAYOUT_COLS: 3
+  LAYOUT_ROTATION: 0deg
 
-  TABS_FOOTPRINT: 'kikit:Tab'
+  TABS_FOOTPRINT: kikit:Tab
 
   FRAME_WIDTH: 9
   FRAME_SPACE: 1
