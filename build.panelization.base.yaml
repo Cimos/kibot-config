@@ -55,6 +55,13 @@ outputs:
           post:
             millradius: 1
             origin: bl
+          debug:
+            trace: true
+            drawPartitionLines : true
+            drawboxes : true
+            drawtabfail : true
+            deterministic : true
+
 
 # Default definitions
 ...

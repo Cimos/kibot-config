@@ -174,7 +174,7 @@ function run {
         echo Exporting KIBOT_3D_MODELS=$KIBOT_3D_MODELS
     fi
 
-    if [ $QUICKSTART == "YES" ]; then
+    if [ "$QUICKSTART" == "YES" ]; then
         echo Quick-start options: $VERBOSE --quick-start
         /bin/bash -c "kibot $VERBOSE --quick-start"
     else
