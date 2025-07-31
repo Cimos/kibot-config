@@ -174,13 +174,13 @@ function run {
         echo Exporting KIBOT_3D_MODELS=$KIBOT_3D_MODELS
     fi
 
-    if [ $QUICKSTART == "YES" ]; then
-        echo Quick-start options: $VERBOSE --quick-start
-        /bin/bash -c "kibot $VERBOSE --quick-start"
-    else
-        echo Options: $CONFIG $DIR $BOARD $SCHEMA $VERBOSE $VARIANT $TARGETS $LOG_FILE $EXTRA_ARGS
-        /bin/bash -c "kibot $CONFIG $DIR $BOARD $SCHEMA $VERBOSE $VARIANT $TARGETS $LOG_FILE $EXTRA_ARGS"
-    fi
+    # if [ $QUICKSTART == "YES" ]; then
+    #     echo Quick-start options: $VERBOSE --quick-start
+    #     /bin/bash -c "kibot $VERBOSE --quick-start"
+    # else
+    echo Options: $CONFIG $DIR $BOARD $SCHEMA $VERBOSE $VARIANT $TARGETS $LOG_FILE $EXTRA_ARGS
+    /bin/bash -c "kibot $CONFIG $DIR $BOARD $SCHEMA $VERBOSE $VARIANT $TARGETS $LOG_FILE $EXTRA_ARGS"
+    # fi
 }
 
 function main {
