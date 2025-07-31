@@ -30,6 +30,10 @@ inputs:
     description: 'Install the 3D models, use YES [default: NO]'
     required: false
     default: 'NO'
+  quickstart:
+    description: 'use YES [default: NO]'
+    required: false
+    default: 'NO'
   verbose:
     description: 'Verbosity level [default: 0]'
     required: false
