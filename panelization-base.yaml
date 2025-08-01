@@ -64,11 +64,11 @@ outputs:
             origin: bl
             dimensions: True
           debug:
-            trace: True
-            drawPartitionLines : True
-            drawboxes : True
-            drawtabfail : True
-            deterministic : True
+            trace: @DEBUG_TRACE@
+            drawPartitionLines: @DEBUG_DRAWPARTITIONLINES@
+            drawboxes: @DEBUG_DRAWBOXES@
+            drawtabfail: @DEBUG_DRAWTABFAIL@
+            deterministic: @DEBUG_DETERMINISTIC@
 
 
 # Default definitions
@@ -87,3 +87,9 @@ definitions:
 
   FRAME_WIDTH: 9
   FRAME_SPACE: 1
+
+  DEBUG_TRACE: False
+  DEBUG_DRAWPARTITIONLINES: False
+  DEBUG_DRAWBOXES: False
+  DEBUG_DRAWTABFAIL: False
+  DEBUG_DETERMINISTIC: False
