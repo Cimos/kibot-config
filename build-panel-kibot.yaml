@@ -1,0 +1,53 @@
+kibot:
+  version: 1
+
+import:
+  # Add custom options for each repository
+  - file: ../options.yaml
+  - file: Elecrow
+  - file: FusionPCB
+  - file: JLCPCB
+  - file: P-Ban
+  - file: PCBWay
+
+outputs:
+  - name: 'PDF Drawings'
+    comment: ""
+    type: pcb_print
+    dir: Drawings
+    options:
+      frame_plot_mechanism: 'plot'
+      dnf_filter: '_kibom_dnf'
+      output: '%f-%r-drawing.pdf'
+      pages:
+        - layers:
+          - layer: F.Fab
+          - layer: Edge.Cuts
+          - layer: Dwgs.User
+          page_id: Front Assembly
+        - layers:
+          - layer: B.Fab
+          - layer: Edge.Cuts
+          - layer: Dwgs.User
+          page_id: Back Assembly
+        - layers:
+          - layer: F.Cu
+          - layer: Edge.Cuts
+          page_id: Front Cu
+        - layers:
+          - layer: B.Cu
+          - layer: Edge.Cuts
+          page_id: Back Cu
+
+...
+definitions:
+  _KIBOT_F_PASTE: '- F.Paste'
+  _KIBOT_B_PASTE: '- B.Paste'
+  _KIBOT_GERBER_LAYERS: |
+      - copper
+            - F.SilkS
+            - B.SilkS
+            - F.Mask
+            - B.Mask
+            - Edge.Cuts
+            - User.2

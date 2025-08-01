@@ -33,13 +33,13 @@ jobs:
       id: check_files
       uses: andstor/file-existence-action@v3
       with:
-        files: "build.panel.yaml"
+        files: "build-panel.yaml"
         
     - name: Generate panel file
       if: steps.check_files.outputs.files_exists == 'true'
       uses: Cimos/kibot-config@main
       with:
-        config: build.panel.yaml
+        config: build-panel.yaml
         dir: output
         schema: '${{ env.PROJECT_NAME }}.kicad_sch'
         board: '${{ env.PROJECT_NAME }}.kicad_pcb'
@@ -49,7 +49,7 @@ jobs:
       if: steps.check_files.outputs.files_exists == 'true'
       uses: Cimos/kibot-config@main
       with:
-        config: kibot-config/build.kibot.yaml
+        config: kibot-config/build-panel-kibot.yaml
         dir: output
         schema: '${{ env.PROJECT_NAME }}.kicad_sch'
         board: 'output/Panel/${{ env.PROJECT_NAME }}-panel.kicad_pcb'

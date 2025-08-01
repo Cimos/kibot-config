@@ -31,7 +31,7 @@ jobs:
     - name: Build Datapack
       uses: Cimos/kibot-config@main
       with:
-        config: kibot-config/build.kibot.yaml
+        config: kibot-config/build-pcb-kibot.yaml
         dir: output
         schema: '${{ env.PROJECT_NAME }}.kicad_sch'
         board: '${{ env.PROJECT_NAME }}.kicad_pcb'

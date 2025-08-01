@@ -30,7 +30,7 @@ outputs:
           cuts:
             type: vcuts
             offset: 0
-            layer: 'User.1'
+            layer: 'User.2'
             clearance: 0.5
             cutcurves: False
           framing:
