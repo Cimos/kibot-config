@@ -51,8 +51,8 @@ outputs:
             type: 3fid
             hoffset: 5
             voffset: 2.5
-            coppersize: 2
-            opening: 1
+            coppersize: 1
+            opening: 2
           text:
             text: "{boardTitle}-{boardRevision}"
             anchor: mt
