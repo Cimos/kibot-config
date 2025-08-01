@@ -49,8 +49,8 @@ outputs:
             voffset: 5
           fiducials:
             type: 3fid
-            hoffset: 5
-            voffset: 2.5
+            hoffset: 7.5
+            voffset: 7.5
             coppersize: 1
             opening: 2
           text:
