@@ -39,6 +39,54 @@ outputs:
           - layer: Edge.Cuts
           page_id: Back Cu
 
+  - name: 'stencil_3d'
+    comment: "Creates a 3D printable stencil"
+    type: stencil_3d
+    dir: stencil/3D
+    options:
+      thickness: 20
+
+  - name: 'stencil_for_jig'
+    comment: "Creates a steel stencil and 3D register"
+    type: stencil_for_jig
+    dir: stencil/Jig
+    options:
+      thickness: 20
+
+  - name: 'report_full'
+    comment: "Full design report"
+    type: report
+
+  - name: KiKit_present_files
+    comment: "Present test using full auto mode"
+    type: kikit_present
+    dir: Present/Auto
+    options:
+      description: 'tests/data/silly_project.md'
+      repository: 'https://github.com/INTI-CMNB/KiBot/'
+
+  - name: 'Costs'
+    comment: "Components costs spreadsheet"
+    type: kicost
+    dir: KiCost
+    options:
+      output: 'simple'
+      no_price: true
+      no_collapse: true
+
+  - name: 'kiri'
+    comment: "Test for KiRi interface"
+    type: kiri
+    layers:
+    - all
+    options:
+      color_theme: _builtin_classic
+      keep_generated: true
+      background_color: "#E0E0E0"
+      branch: 3b3741c
+      zones: unfill
+      max_commits: 10
+
 ...
 definitions:
   _KIBOT_F_PASTE: '- F.Paste'
