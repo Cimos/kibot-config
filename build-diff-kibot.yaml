@@ -7,97 +7,35 @@ outputs:
     comment: "Test for KiRi interface"
     type: kiri
     dir: KIRI
-    layers:
-    - all
     options:
-      color_theme: _builtin_classic
       keep_generated: true
-      background_color: "#E0E0E0"
-      branch: 3b3741c
-      zones: unfill
       max_commits: 10
 
-# KiCAD Diff
+# KiCAD Diff PCB
   - name: 'diff_pcb'
     comment: "PCB difference with git HEAD"
     dir: DIFF
     type: diff
     options:
-      old: master
+      old: main
       old_type: git
       new: HEAD
       new_type: git
       cache_dir: .cache
       force_checkout: true
-      # add_link_id: true
       only_different: true
 
-
-# KiCAD Diff
+# KiCAD Diff Schematic
   - name: 'diff_sch'
     comment: "SCH difference with git HEAD"
     dir: DIFF
     type: diff
     options:
-      old: master
+      old: main
       old_type: git
       new: HEAD
       new_type: git
       cache_dir: .cache
       force_checkout: true
-      # add_link_id: true
       only_different: true
       pcb: false
-
-
-# outputs:
-#   - name: 'kiri'
-#     comment: "Test for KiRi interface"
-#     type: kiri
-#     layers: ['F.Cu', 'In1.Cu', 'F.SilkS']
-#     options:
-#       color_theme: _builtin_classic
-#       keep_generated: true
-#       background_color: "#E0E0E0"
-#       branch: 3b3741c
-#       zones: unfill
-#       # max_commits: 1
-
-#   - name: arch
-#     comment: ZIP file
-#     type: compress
-#     options:
-#       files:
-#         - from_output: kiri
-
-
-
-# preflight:
-#   check_zone_fills: true
-
-# outputs:
-#   - name: '_diff_cur_pcb_show'
-#     comment: "Show differences for the zone fill"
-#     type: diff
-#     layers: copper
-#     options:
-#       cache_dir: .cache
-#       old: ''
-#       old_type: file
-#       new_type: current
-
-#   - name: '_diff_cur_pcb_check'
-#     comment: "Check the zone fill doesn't generate important changes"
-#     type: diff
-#     layers: copper
-#     options:
-#       cache_dir: .cache
-#       diff_mode: stats
-#       threshold: @_KIBOT_CHKZONE_THRESHOLD@
-#       old: ''
-#       old_type: file
-#       new_type: current
-
-# ...
-# definitions:
-#   _KIBOT_CHKZONE_THRESHOLD: 100
