@@ -11,8 +11,7 @@ import:
   - file: PCBWay
 
 outputs:
-  - name: 'PDF Drawings'
-    comment: ""
+  - name: 'panel_pcb_pdf'
     type: pcb_print
     dir: Drawings
     options:
@@ -38,20 +37,6 @@ outputs:
           - layer: B.Cu
           - layer: Edge.Cuts
           page_id: Back Cu
-
-  - name: 'stencil_3d'
-    comment: "Creates a 3D printable stencil"
-    type: stencil_3d
-    dir: stencil/3D
-    options:
-      thickness: 20
-
-  - name: 'stencil_for_jig'
-    comment: "Creates a steel stencil and 3D register"
-    type: stencil_for_jig
-    dir: stencil/Jig
-    options:
-      thickness: 20
 
 ...
 definitions:

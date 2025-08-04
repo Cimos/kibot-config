@@ -38,8 +38,8 @@ outputs:
       output: '%f-%r-%i.%x'
 
 # PDF Drawings
-  - name: 'drawings'
-    comment: ""
+  - name: 'pcb_pdf'
+    comment: "Print PCB Drawings (PDF)"
     type: pcb_print
     dir: Drawings
     options:
@@ -139,6 +139,22 @@ outputs:
   - name: 'report_full'
     comment: "Full design report"
     type: report
+    dir: Design_Report
+
+
+  - name: 'stencil_3d'
+    comment: "Creates a 3D printable stencil"
+    type: stencil_3d
+    dir: stencil/3D
+    options:
+      thickness: 20
+
+  - name: 'stencil_for_jig'
+    comment: "Creates a steel stencil and 3D register"
+    type: stencil_for_jig
+    dir: stencil/Jig
+    options:
+      thickness: 20
 
   # - name: KiKit_present_files
   #   comment: "Present test using full auto mode"
