@@ -55,14 +55,14 @@ jobs:
         board: 'output_panel/Panel/${{ env.PROJECT_NAME }}-panel.kicad_pcb'
         logfile: 'logfile_panel/logfile.log'
 
-    - name: Upload logfile
+    - name: Upload panel logfile
       if: always()
       uses: actions/upload-artifact@v4
       with:
         name: ${{ env.PROJECT_NAME }}-panel-logfile
         path: logfile_panel
 
-    - name: Upload datapack results
+    - name: Upload Panel Results
       uses: actions/upload-artifact@v4
       with:
         name: ${{ env.PROJECT_NAME }}-panel-datapack

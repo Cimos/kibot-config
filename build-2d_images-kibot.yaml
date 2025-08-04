@@ -4,21 +4,26 @@ kibot:
 import:
   # Add custom options for each repository
   - file: ../options.yaml
-  - file: 3DRender
+
+  - file: 2d_images-kibot.yaml
     definitions:
       _KIBOT_IMPORT_ID: '_top'
       _KIBOT_ROT_X: 30
       _KIBOT_ROT_Z: -20
-  - file: 3DRender
+  - file: 2d_images-kibot.yaml
     definitions:
       _KIBOT_IMPORT_ID: '_bottom'
       _KIBOT_3D_VIEW: bottom
       _KIBOT_ROT_Z: -20
       _KIBOT_ROT_X: -30
-  - file: 3DRender
+  - file: 2d_images-kibot.yaml
     definitions:
       _KIBOT_IMPORT_ID: '_top_straight'
-  - file: 3DRender
+  - file: 2d_images-kibot.yaml
     definitions:
       _KIBOT_IMPORT_ID: '_bottom_straight'
       _KIBOT_3D_VIEW: bottom
+
+...
+definitions:
+  _KIBOT_IMPORT_DIR: '2D_Images'

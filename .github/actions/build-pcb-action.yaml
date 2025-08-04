@@ -42,11 +42,11 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.PROJECT_NAME }}-logfile
+        name: ${{ env.PROJECT_NAME }}-pcb-logfile
         path: logfile_pcb
 
-    - name: Upload Results
+    - name: Upload PCB Datapack
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.PROJECT_NAME }}-datapack
+        name: ${{ env.PROJECT_NAME }}-pcb-datapack
         path: output_pcb

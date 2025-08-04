@@ -38,15 +38,15 @@ jobs:
         logfile: 'logfile_images/logfile.log'
         # verbose: 2
 
-    - name: Upload logfile
+    - name: Upload 2D Images logfile
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.PROJECT_NAME }}-logfile
+        name: ${{ env.PROJECT_NAME }}-2d_images-logfile
         path: logfile_images
 
-    - name: Upload Results
+    - name: Upload 2D Images
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.PROJECT_NAME }}-datapack
+        name: ${{ env.PROJECT_NAME }}-2d_images
         path: output_images

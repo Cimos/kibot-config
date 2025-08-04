@@ -39,15 +39,15 @@ jobs:
         logfile: 'logfile_cad/logfile.log'
         # verbose: 2
 
-    - name: Upload logfile
+    - name: Upload Diff logfile
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.PROJECT_NAME }}-logfile
+        name: ${{ env.PROJECT_NAME }}-diff-logfile
         path: logfile_cad
 
-    - name: Upload Results
+    - name: Upload Diff
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.PROJECT_NAME }}-datapack
+        name: ${{ env.PROJECT_NAME }}-diff
         path: output_diff

@@ -38,15 +38,15 @@ jobs:
         logfile: 'logfile_cad/logfile.log'
         verbose: 2
 
-    - name: Upload logfile
+    - name: Upload 3D Models logfile
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.PROJECT_NAME }}-logfile
+        name: ${{ env.PROJECT_NAME }}--3d_model-logfile
         path: logfile_cad
 
-    - name: Upload Results
+    - name: Upload 3D Models
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.PROJECT_NAME }}-datapack
+        name: ${{ env.PROJECT_NAME }}-3D_Model
         path: output_cad
