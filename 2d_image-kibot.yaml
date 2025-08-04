@@ -2,8 +2,8 @@ kibot:
   version: 1
 
 outputs:
-  - name: _blender_3d@_KIBOT_IMPORT_ID@
-    comment: "HQ 3D Render of the PCB"
+  - name: _blender@_KIBOT_IMPORT_ID@
+    comment: "HQ Render of the PCB"
     type: blender_export
     dir: @_KIBOT_IMPORT_DIR@
     options:

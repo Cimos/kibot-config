@@ -1,4 +1,4 @@
-name: Build 3D CAD Model
+name: Generate Video Frames
 on:
   push:
     branches:
@@ -28,25 +28,27 @@ jobs:
         path: ./kibot-config
         ref: main
 
-    - name: Generate 3D Models
+    - name: Generate Video Frames
       uses: Cimos/kibot-config@main
       with:
-        config: kibot-config/build-3d_model-kibot.yaml
-        dir: output_cad
+        config: kibot-config/build-video-kibot.yaml
+        dir: output_video
         schema: '${{ env.PROJECT_NAME }}.kicad_sch'
         board: '${{ env.PROJECT_NAME }}.kicad_pcb'
-        logfile: 'logfile_cad/logfile.log'
-        verbose: 2
+        logfile: 'logfile_video/logfile.log'
+        # verbose: 2
 
-    - name: Upload 3D Models logfile
+    - name: Upload Video logfile
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.PROJECT_NAME }}--3d_model-logfile
-        path: logfile_cad
+        name: ${{ env.PROJECT_NAME }}-video-logfile
+        path: logfile_video
 
-    - name: Upload 3D Models
+# Add step to create MP4 with 2D Frames
+
+    - name: Upload Video
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.PROJECT_NAME }}-3d_model
-        path: output_cad
+        name: ${{ env.PROJECT_NAME }}-video
+        path: output_video
