@@ -17,7 +17,7 @@ outputs:
     dir: DIFF
     type: diff
     options:
-      old: main
+      old: KIBOT_LAST-10
       old_type: git
       new: HEAD
       new_type: git
@@ -31,7 +31,7 @@ outputs:
     dir: DIFF
     type: diff
     options:
-      old: main
+      old: KIBOT_LAST-10
       old_type: git
       new: HEAD
       new_type: git
