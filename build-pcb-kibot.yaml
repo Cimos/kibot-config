@@ -136,12 +136,22 @@ outputs:
       only_smd: true
       output: '%f-%r-%i.%x'
 
-# Generate 3D Model
-  - name: 'step'
-    comment: 'Generate 3D Step Model'
-    type: 'step'
-    dir: Model
+  - name: 'report_full'
+    comment: "Full design report"
+    type: report
+
+  - name: KiKit_present_files
+    comment: "Present test using full auto mode"
+    type: kikit_present
+    dir: Present/Auto
     options:
-      dnf_filter: '_kibom_dnf'
-      no_virtual: true
-      output: '%f-%r-%i.%x'
+      repository: 'https://github.com/INTI-CMNB/KiBot/'
+
+  - name: 'Costs'
+    comment: "Components costs spreadsheet"
+    type: kicost
+    dir: KiCost
+    options:
+      output: 'simple'
+      no_price: true
+      no_collapse: true

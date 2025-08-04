@@ -1,0 +1,26 @@
+kibot:
+  version: 1
+
+import:
+  # Add custom options for each repository
+  - file: ../options.yaml
+
+outputs:
+  - name: '3d_video_export'
+    comment: "Generates the frames for a video of a rotating PCB"
+    type: blender_export
+    options:
+      render_options:
+        transparent_background: true
+        samples: 10
+      fixed_auto_camera: true
+      auto_camera_z_axis_factor: 1.5
+      default_file_id: '_%03d'
+      point_of_view:
+        - rotate_x: 30
+          rotate_z: -20
+        - rotate_x: 4
+          rotate_z: 4
+          steps: 90
+      outputs:
+        - type: render

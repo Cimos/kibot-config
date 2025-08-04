@@ -1,0 +1,18 @@
+kibot:
+  version: 1
+
+import:
+  # Add custom options for each repository
+  - file: ../options.yaml
+
+outputs:
+# Generate 3D Model
+  - name: 'step'
+    comment: 'Generate 3D Step Model'
+    type: 'step'
+    dir: Model
+    options:
+      dnf_filter: '_kibom_dnf'
+      no_virtual: true
+      output: '%f-%r-%i.%x'
+

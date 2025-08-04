@@ -1,0 +1,52 @@
+name: Build 3D CAD Model
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
+
+    steps:
+    - name: Checkout (only last commit)
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Get KiCad project name
+      run: echo "PROJECT_NAME=$(basename *.kicad_pro .kicad_pro)" >> $GITHUB_ENV
+
+    - name: Clone and Checkout KiBot config
+      uses: actions/checkout@v4
+      with:
+        repository: Cimos/kibot-config
+        path: ./kibot-config
+        ref: main
+
+    - name: Build Datapack
+      uses: Cimos/kibot-config@main
+      with:
+        config: kibot-config/build-3d_model-kibot.yaml
+        dir: output_cad_model
+        schema: '${{ env.PROJECT_NAME }}.kicad_sch'
+        board: '${{ env.PROJECT_NAME }}.kicad_pcb'
+        logfile: 'logfile_cad/logfile.log'
+        # verbose: 2
+
+    - name: Upload logfile
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ env.PROJECT_NAME }}-logfile
+        path: logfile_cad
+
+    - name: Upload Results
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ env.PROJECT_NAME }}-datapack
+        path: output_cad_model

@@ -1,0 +1,49 @@
+kibot:
+  version: 1
+
+import:
+  # Add custom options for each repository
+  - file: ../options.yaml
+  - file: 3DRender
+    definitions:
+      _KIBOT_IMPORT_ID: '_top'
+      _KIBOT_ROT_X: 30
+      _KIBOT_ROT_Z: -20
+  - file: 3DRender
+    definitions:
+      _KIBOT_IMPORT_ID: '_bottom'
+      _KIBOT_3D_VIEW: bottom
+      _KIBOT_ROT_Z: -20
+      _KIBOT_ROT_X: -30
+  - file: 3DRender
+    definitions:
+      _KIBOT_IMPORT_ID: '_top_straight'
+  - file: 3DRender
+    definitions:
+      _KIBOT_IMPORT_ID: '_bottom_straight'
+      _KIBOT_3D_VIEW: bottom
+
+
+outputs:
+  - name: Blender
+    comment: "How to draw a step"
+    type: blender_export
+    run_by_default: false
+    options:
+      render_options:
+        transparent_background: true
+        auto_crop: true
+        samples: 5
+      point_of_view:
+        rotate_x: 30
+        rotate_z: -20
+      outputs:
+        - type: render
+
+  - name: Populate
+    comment: "Populate example"
+    type: populate
+    dir: PopulateSimple
+    options:
+      renderer: Blender
+      input: tests/data/plain_html_simple.md
