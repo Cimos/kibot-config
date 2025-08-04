@@ -1,8 +1,9 @@
 name: Build PCB Diff
 on:
   push:
-    branches:
-      - '**'
+    branches-ignore:
+      - master
+
   pull_request:
     branches:
       - master
@@ -10,7 +11,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
+    if: github.event_name != 'pull_request' ||
+      github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
+      github.ref != 'refs/heads/master' ||
+      github.ref == 'refs/heads/main'
 
     steps:
     - name: Checkout (only last commit)

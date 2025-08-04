@@ -6,6 +6,7 @@ outputs:
   - name: 'kiri'
     comment: "Test for KiRi interface"
     type: kiri
+    dir: KIRI
     layers:
     - all
     options:
@@ -19,30 +20,32 @@ outputs:
 # KiCAD Diff
   - name: 'diff_pcb'
     comment: "PCB difference with git HEAD"
+    dir: DIFF
     type: diff
     options:
-      old: KIBOT_LAST-10
+      old: master
       old_type: git
       new: HEAD
       new_type: git
       cache_dir: .cache
       force_checkout: true
-      add_link_id: true
+      # add_link_id: true
       only_different: true
 
 
 # KiCAD Diff
   - name: 'diff_sch'
     comment: "SCH difference with git HEAD"
+    dir: DIFF
     type: diff
     options:
-      old: KIBOT_LAST-10
+      old: master
       old_type: git
       new: HEAD
       new_type: git
       cache_dir: .cache
       force_checkout: true
-      add_link_id: true
+      # add_link_id: true
       only_different: true
       pcb: false
 

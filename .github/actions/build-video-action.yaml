@@ -2,15 +2,18 @@ name: Generate Video Frames
 on:
   push:
     branches:
-      - '**'
-  pull_request:
-    branches:
       - master
+  # pull_request:
+  #   branches:
+  #     - master
 
 jobs:
-  build:
+  base_repos:
     runs-on: ubuntu-latest
-    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
+    if: github.event_name != 'pull_request' ||
+      github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name ||
+      github.ref == 'refs/heads/master' ||
+      github.ref == 'refs/heads/main'
 
     steps:
     - name: Checkout (only last commit)
@@ -28,6 +31,10 @@ jobs:
         path: ./kibot-config
         ref: main
 
+  generate_video:
+    runs-on: ubuntu-latest
+    needs: base_repos
+    steps:
     - name: Generate Video Frames
       uses: Cimos/kibot-config@main
       with:
