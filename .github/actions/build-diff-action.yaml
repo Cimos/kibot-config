@@ -17,6 +17,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         submodules: recursive
+        fetch-depth: 0
 
     - name: Get KiCad project name
       run: echo "PROJECT_NAME=$(basename *.kicad_pro .kicad_pro)" >> $GITHUB_ENV
