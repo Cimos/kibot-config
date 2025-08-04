@@ -140,12 +140,12 @@ outputs:
     comment: "Full design report"
     type: report
 
-  - name: KiKit_present_files
-    comment: "Present test using full auto mode"
-    type: kikit_present
-    dir: Present/Auto
-    options:
-      repository: 'https://github.com/INTI-CMNB/KiBot/'
+  # - name: KiKit_present_files
+  #   comment: "Present test using full auto mode"
+  #   type: kikit_present
+  #   dir: Present/Auto
+  #   options:
+  #     repository: 'https://github.com/INTI-CMNB/KiBot/'
 
   - name: 'Costs'
     comment: "Components costs spreadsheet"

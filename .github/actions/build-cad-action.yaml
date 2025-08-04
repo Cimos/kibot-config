@@ -28,15 +28,15 @@ jobs:
         path: ./kibot-config
         ref: main
 
-    - name: Build Datapack
+    - name: Generate 3D Models
       uses: Cimos/kibot-config@main
       with:
         config: kibot-config/build-3d_model-kibot.yaml
-        dir: output_cad_model
+        dir: output_cad
         schema: '${{ env.PROJECT_NAME }}.kicad_sch'
         board: '${{ env.PROJECT_NAME }}.kicad_pcb'
         logfile: 'logfile_cad/logfile.log'
-        # verbose: 2
+        verbose: 2
 
     - name: Upload logfile
       if: always()
@@ -49,4 +49,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: ${{ env.PROJECT_NAME }}-datapack
-        path: output_cad_model
+        path: output_cad
