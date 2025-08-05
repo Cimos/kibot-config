@@ -66,6 +66,55 @@ outputs:
           - layer: Edge.Cuts
           page_id: Back Cu
 
+# Generate Pick and Place files
+  - name: 'position (ASCII)'
+    comment: "Pick and place file"
+    type: position
+    dir: Position
+    options:
+      format: ASCII   # CSV or ASCII format
+      units: millimeters  # millimeters or inches
+      separate_files_for_front_and_back: true
+      only_smd: true
+      output: '%f-%r-%i.%x'
+
+  - name: 'position (CSV)'
+    comment: "Pick and place file"
+    type: position
+    dir: Position
+    options:
+      format: CSV   # CSV or ASCII format
+      units: millimeters  # millimeters or inches
+      separate_files_for_front_and_back: true
+      only_smd: true
+      output: '%f-%r-%i.%x'
+
+  - name: 'report_full'
+    comment: "Full design report"
+    type: report
+    dir: Design_Report
+
+  - name: 'stencil_3d'
+    comment: "Creates a 3D printable stencil"
+    type: stencil_3d
+    dir: stencil/3D
+    options:
+      thickness: 20
+
+  - name: 'stencil_for_jig'
+    comment: "Creates a steel stencil and 3D register"
+    type: stencil_for_jig
+    dir: stencil/Jig
+    options:
+      thickness: 20
+
+  # - name: KiKit_present_files
+  #   comment: "Present test using full auto mode"
+  #   type: kikit_present
+  #   dir: Present/Auto
+  #   options:
+  #     repository: 'https://github.com/INTI-CMNB/KiBot/'
+
 # Generate IBOM
   - name: 'interactive_bom'
     comment: "Interactive Bill of Materials (HTML)"
@@ -113,61 +162,10 @@ outputs:
         hide_pcb_info: true
         hide_stats_info: true
         quote_all: true
-# Generate Pick and Place files
-  - name: 'position (ASCII)'
-    comment: "Pick and place file"
-    type: position
-    dir: Position
-    options:
-      format: ASCII   # CSV or ASCII format
-      units: millimeters  # millimeters or inches
-      separate_files_for_front_and_back: true
-      only_smd: true
-      output: '%f-%r-%i.%x'
 
-  - name: 'position (CSV)'
-    comment: "Pick and place file"
-    type: position
-    dir: Position
-    options:
-      format: CSV   # CSV or ASCII format
-      units: millimeters  # millimeters or inches
-      separate_files_for_front_and_back: true
-      only_smd: true
-      output: '%f-%r-%i.%x'
-
-  - name: 'report_full'
-    comment: "Full design report"
-    type: report
-    dir: Design_Report
-
-
-  - name: 'stencil_3d'
-    comment: "Creates a 3D printable stencil"
-    type: stencil_3d
-    dir: stencil/3D
-    options:
-      thickness: 20
-
-  - name: 'stencil_for_jig'
-    comment: "Creates a steel stencil and 3D register"
-    type: stencil_for_jig
-    dir: stencil/Jig
-    options:
-      thickness: 20
-
-  # - name: KiKit_present_files
-  #   comment: "Present test using full auto mode"
-  #   type: kikit_present
-  #   dir: Present/Auto
-  #   options:
-  #     repository: 'https://github.com/INTI-CMNB/KiBot/'
-
-  - name: 'Costs'
+  - name: 'KiCost'
     comment: "Components costs spreadsheet"
     type: kicost
     dir: KiCost
     options:
       output: 'simple'
-      no_price: true
-      no_collapse: true
