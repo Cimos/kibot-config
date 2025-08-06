@@ -177,7 +177,7 @@ outputs:
     dir: KiCost_bom
     options:
       html:
-        digikey_link: 'Supplier PN#'
+        digikey_link: 'digikey#'
         mouser_link: 'mouser#'
         lcsc_link: true
       output: '%f.%x'
