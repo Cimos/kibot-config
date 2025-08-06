@@ -187,8 +187,6 @@ outputs:
         - Value
         - Quantity Per PCB
         - digikey#
-        - digikey_alt#
         - mouser#
-        - mouser_alt#
         - LCSC#
         - manf#
