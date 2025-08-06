@@ -19,7 +19,7 @@ outputs:
         view: @_KIBOT_3D_VIEW@
         file_id: @_KIBOT_3D_FILE_ID@
       outputs:
-        - type: blender
+        - type: render
 
 ...
 definitions:
