@@ -166,6 +166,29 @@ outputs:
   - name: 'KiCost'
     comment: "Components costs spreadsheet"
     type: kicost
-    dir: KiCost
+    dir: KiCost_kicost
     options:
       output: 'simple'
+
+
+  - name: 'bom_internal'
+    comment: "Bill of Materials in HTML format"
+    type: bom
+    dir: KiCost_bom
+    options:
+      html:
+        digikey_link: 'Supplier PN#'
+        mouser_link: 'mouser#'
+        lcsc_link: true
+      output: '%f.%x'
+      columns:
+        - References
+        - Part
+        - Value
+        - Quantity Per PCB
+        - digikey#
+        - digikey_alt#
+        - mouser#
+        - mouser_alt#
+        - LCSC#
+        - manf#
