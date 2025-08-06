@@ -6,13 +6,24 @@ import:
   - file: ../options.yaml
 
 outputs:
-# Generate 3D Model
-  - name: 'step'
-    comment: 'Generate 3D Step Model'
+  # Generate 3D Models
+  - name: 'step_simple'
+    comment: 'Generate Simple 3D Step Model'
     type: step
     dir: Model
     options:
       dnf_filter: '_kibom_dnf'
+      no_virtual: true
+      output: '%f-%r-%i.%x'
+      download_lcsc: false
+
+  - name: step_full
+    comment: "Generate Full 3D model (STEP)"
+    type: export_3d
+    dir: Model
+    options:
+      # origin: 100,-200
+      # min_distance: 1
       no_virtual: true
       output: '%f-%r-%i.%x'
       cut_vias_in_body: true
