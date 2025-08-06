@@ -9,10 +9,15 @@ outputs:
 # Generate 3D Model
   - name: 'step'
     comment: 'Generate 3D Step Model'
-    type: 'step'
+    type: step
     dir: Model
     options:
       dnf_filter: '_kibom_dnf'
       no_virtual: true
       output: '%f-%r-%i.%x'
-
+      cut_vias_in_body: true
+      download_lcsc: false
+      include_pads: true
+      include_silkscreen: true
+      include_soldermask: true
+      include_zones: true
