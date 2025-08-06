@@ -14,7 +14,7 @@ outputs:
     options:
       dnf_filter: '_kibom_dnf'
       no_virtual: true
-      output: '%f-%r-%i.%x'
+      output: '%f-%r-%i_simple.%x'
       download_lcsc: false
 
   - name: step_full
@@ -22,10 +22,8 @@ outputs:
     type: export_3d
     dir: Model
     options:
-      # origin: 100,-200
-      # min_distance: 1
       no_virtual: true
-      output: '%f-%r-%i.%x'
+      output: '%f-%r-%i_full.%x'
       cut_vias_in_body: true
       download_lcsc: false
       include_pads: true
