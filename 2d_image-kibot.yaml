@@ -10,6 +10,8 @@ outputs:
       render_options:
         transparent_background: true
         samples: 10
+      pcb3d:
+        download_lcsc: false
       point_of_view:
         rotate_x: @_KIBOT_ROT_X@
         rotate_y: @_KIBOT_ROT_Y@
