@@ -112,6 +112,24 @@ shellcheck SC2145: mixes string and array. `echo` takes one string but `$@` expa
 
 **Remedy:** `$@` → `$*`.
 
+### B11 — Reference workflows have unsafe basename glob and unquoted `$GITHUB_ENV`
+**Severity:** very low (info-level shellcheck findings).
+
+All six reference workflows under `.github/actions/` have:
+
+```yaml
+- run: echo "PROJECT_NAME=$(basename *.kicad_pro .kicad_pro)" >> $GITHUB_ENV
+```
+
+- **SC2035**: `basename *.kicad_pro` — if the matched filename starts with `-`, glob expansion turns it into a flag. Use `./*.kicad_pro`.
+- **SC2086**: `>> $GITHUB_ENV` — should be `>> "$GITHUB_ENV"`.
+
+In practice neither is likely to bite (KiCad project files don't start with `-`; `$GITHUB_ENV` paths don't have spaces). Currently filtered out by the self-test's `-shellcheck "shellcheck -S error"` because both are info-severity.
+
+**Found by:** actionlint's embedded shellcheck on the first CI run after B1 was fixed.
+
+**Remedy:** apply the one-liner fix in all six files. (Tracked as #26.)
+
 ## Enhancements
 
 ### E1 — Inconsistent `output:` filename patterns

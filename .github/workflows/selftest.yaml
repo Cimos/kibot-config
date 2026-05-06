@@ -18,13 +18,18 @@ jobs:
         shell: bash
         run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
 
+      # actionlint bundles shellcheck for inline `run:` scripts. Pin its
+      # severity to error to match the standalone shellcheck job's
+      # threshold — info-level findings (SC2035, SC2086 on basename
+      # globs) are tracked separately and would otherwise drown out
+      # real regressions.
       - name: Lint workflows under .github/workflows/
         shell: bash
-        run: ${{ steps.get_actionlint.outputs.executable }} -color
+        run: ${{ steps.get_actionlint.outputs.executable }} -color -shellcheck "shellcheck -S error"
 
       - name: Lint reference workflow templates under .github/actions/
         shell: bash
-        run: ${{ steps.get_actionlint.outputs.executable }} -color .github/actions/*.yaml
+        run: ${{ steps.get_actionlint.outputs.executable }} -color -shellcheck "shellcheck -S error" .github/actions/*.yaml
 
   shellcheck:
     name: shellcheck
