@@ -1,0 +1,42 @@
+name: Self-test
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: [main]
+
+jobs:
+  actionlint:
+    name: actionlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install actionlint
+        id: get_actionlint
+        shell: bash
+        run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+
+      - name: Lint workflows under .github/workflows/
+        shell: bash
+        run: ${{ steps.get_actionlint.outputs.executable }} -color
+
+      - name: Lint reference workflow templates under .github/actions/
+        shell: bash
+        run: ${{ steps.get_actionlint.outputs.executable }} -color .github/actions/*.yaml
+
+  shellcheck:
+    name: shellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # severity=error keeps the signal-to-noise high. The known quoting
+      # patterns in entrypoint.sh / local.sh are tracked under E9 and would
+      # only flag at warning level.
+      - uses: ludeeus/action-shellcheck@master
+        with:
+          additional_files: 'entrypoint.sh local.sh'
+          severity: error
+          ignore_paths: '.git'
