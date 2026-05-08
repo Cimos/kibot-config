@@ -4,9 +4,21 @@ Verified findings from a second-pass audit of the repo (2026-05-06).
 Each entry: severity, evidence (file:line), proposed remedy. Anything I
 could not directly verify is marked `(unverified)`.
 
+## Status (last updated 2026-05-08)
+
+| Closed | Open  |
+| ------ | ----- |
+| B1, B10 | B2, B3, B4, B5, B6, B7, B8, B9, B11 (9 bugs); E1–E13 (13 enhancements) |
+
+GitHub issue numbers are listed inline. Items found *during* fix work
+(B10, B11) are appended below, out of original numbering order.
+
+The Layer 1 safety net (lint) is live and currently green. See
+[`safety-net.md`](safety-net.md).
+
 ## Bugs
 
-### B1 — `build-diff-action.yaml` `if:` is missing an operator
+### B1 — `build-diff-action.yaml` `if:` is missing an operator ✅ Closed (#3)
 **Severity:** medium (would fail expression eval if/when this template is copied to a real workflow).
 
 `.github/actions/build-diff-action.yaml:14-17`:
@@ -97,7 +109,7 @@ SHA256 `9533fb7c...` matches; both 201 lines / 5614 bytes. There's no automated 
 
 **Remedy:** Add the same `if:` guard.
 
-### B10 — `entrypoint.sh:37` illegal-option message mishandles `$@`
+### B10 — `entrypoint.sh:37` illegal-option message mishandles `$@` ✅ Closed (#25)
 **Severity:** low (cosmetic; affects error message formatting).
 
 `entrypoint.sh:37` and `local.sh:37`:
