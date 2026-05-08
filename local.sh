@@ -34,7 +34,7 @@ function msg_disclaimer {
 }
 
 function msg_illegal_arg {
-    echo -e "$SCRIPT: illegal option $@"
+    echo -e "$SCRIPT: illegal option $*"
 }
 
 function msg_help {
