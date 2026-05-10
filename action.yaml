@@ -1,5 +1,5 @@
-name: 'KiBot GitHub action with logfiles'
-description: 'Copied from KiBot, automatically generates documentation, fabrication, etc. files for any KiCad project.'
+name: 'KiCad Datapack Builder'
+description: 'Build a complete KiCad datapack from your project on every push, using a curated set of KiBot configs.'
 author: 'MadMan'
 inputs:
   config:
